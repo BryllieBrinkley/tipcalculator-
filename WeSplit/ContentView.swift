@@ -24,7 +24,6 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 103) {
                 Form {
                     Section {
                         
@@ -46,11 +45,11 @@ struct ContentView: View {
                         }
                         Section("How much tip do you want to leave? 🤩") {
                             Picker("Tip percentage", selection: $tipPercentage) {
-                                ForEach(tipPercentages, id: \.self) { percent in
+                                ForEach(0..<101) { percent in
                                     Text("\(percent)%")
                                 }
                             }
-                            .pickerStyle(.segmented)
+                            .pickerStyle(.navigationLink)
                         }
                     }
                     
@@ -74,14 +73,13 @@ struct ContentView: View {
                 }
                 .padding()
                 .scrollContentBackground(.hidden)
-                .navigationTitle("Tip Calculator")
-                
-                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("WeSplit")
+                .padding()
+                .navigationSubtitle("Split the bill, tip included.")
                 .toolbar {
                     if amountIsFocused {
                         Button("done") {
                             amountIsFocused = false
-                        }
                     }
                 }
             }
